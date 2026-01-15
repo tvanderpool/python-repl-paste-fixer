@@ -3,7 +3,13 @@ set -e
 
 version=$(jq -r '.version' package.json)
 
-git tag -a "v$version" -m "Release version $version"
+if ! git tag -a "v$version" -m "Release version $version"; then
+    read -p "Tag v$version already exists. overwrite? (y/n): " confirm
+    if [[ $confirm == "y" || $confirm == "Y" ]]; then
+        git tag -d "v$version"
+        git tag -a "v$version" -m "Release version $version"
+    fi
+fi
 echo "Created git tag v$version"
 read -p "Push tag to remote repository? (y/n): " confirm
 if [[ $confirm == "y" || $confirm == "Y" ]]; then
