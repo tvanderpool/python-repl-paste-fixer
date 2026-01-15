@@ -2,7 +2,7 @@
 	"name": "python-repl-paste-fixer",
 	"displayName": "Python Repl Paste Fixer",
 	"description": "Remove prefixes from code copied from Python REPL.",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"publisher": "travie",
 	"author": {
 		"name": "Travis Vanderpool",
@@ -46,11 +46,11 @@
 		"package": "vsce package"
 	},
 	"devDependencies": {
-		"@types/node": "^16.18.34",
+		"@types/node": "^20.17.10",
 		"@types/vscode": "^1.74.0",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
-		"@vscode/vsce": "^2.22.0",
+		"@vscode/vsce": "^3.2.1",
 		"eslint": "^8.50.0",
 		"typescript": "^5.3.2"
 	},
