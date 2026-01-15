@@ -1,0 +1,16 @@
+{
+    "name": "VsCode Extension Development",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
+    "customizations": {
+        "settings": {
+            "terminal.integrated.shell.linux": "/bin/bash"
+        },
+        "extensions": [
+            "ms-vscode.vscode-typescript-tslint-plugin",
+            "ms-vscode.vscode-typescript-next"
+        ]
+    },
+    "postCreateCommand": "npm install -g vsce",
+    "postAttachCommand": "npm install",
+    "remoteUser": "node"
+}

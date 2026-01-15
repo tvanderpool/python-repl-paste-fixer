@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Compiled output
+out/
+dist/
+*.vsix
+
+# VS Code test directory
+.vscode-test/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+
+.history
