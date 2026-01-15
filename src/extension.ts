@@ -48,17 +48,42 @@ class Fixer{
 
     removePrefixes(lines: string[]): string[] {
         var lastWasNum = false;
+        var lastIndent = -1;
         lines = lines.map(line => {
             // Check if the line has a prefix
             const prefix = line.slice(0, 4);
             const _isNumPrefix = isNumPrefix(prefix);
-            if (_isNumPrefix || prefix === '>>> ' || prefix === '... ') {
+            const hasPromptPrefix = _isNumPrefix || prefix === '>>> ' || prefix === '... ';
+            
+            if (hasPromptPrefix) {
                 // Remove the prefix
                 line = line.slice(4);
             }
+            
+            // Detect wrapped lines for numbered prefixes
             if( lastWasNum && !_isNumPrefix ){
                 line = '\r' + line;
             }
+            
+            // Detect wrapped lines for non-numbered '... ' prefixes
+            // If previous line had '... ' with indentation, and current line has '... ' with much less indentation,
+            // it's likely a wrapped line continuation
+            if (!_isNumPrefix && prefix === '... ' && lastIndent >= 0) {
+                const currentIndent = line.search(/\S/);
+                // If current line has significantly less indentation (or is at column 0), it's a wrap
+                if (currentIndent === 0 || (currentIndent >= 0 && currentIndent < lastIndent - 4)) {
+                    line = '\r' + line;
+                }
+            }
+            
+            // Track indentation of '... ' lines for wrap detection
+            if (prefix === '... ') {
+                lastIndent = line.search(/\S/);
+                if (lastIndent === -1) lastIndent = 0; // Empty line
+            } else if (prefix === '>>> ' || _isNumPrefix) {
+                lastIndent = -1; // Reset for new statements
+            }
+            
             lastWasNum = _isNumPrefix;
             return line;
         });
