@@ -2,11 +2,15 @@
 	"name": "python-repl-paste-fixer",
 	"displayName": "Python Repl Paste Fixer",
 	"description": "Remove prefixes from code copied from Python REPL.",
-	"version": "1.0.3",
-	"publisher": "travie",
+	"version": "1.0.4",
+	"publisher": "travis-vanderpool",
 	"author": {
 		"name": "Travis Vanderpool",
 		"email": "travis.vanderpool@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tvanderpool/python-repl-paste-fixer"
 	},
 	"license": "AGPLv3",
 	"engines": {
